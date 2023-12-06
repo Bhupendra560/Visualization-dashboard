@@ -12,7 +12,7 @@ class NewsArticleListView(APIView):
     class OutputSerializer(serializers.ModelSerializer):
         class Meta:
             model = NewsArticle
-            fields = '__all__'
+            fields = ['intensity', 'sector', 'title']
 
     def get(self, request, pk=None):
         if pk is not None:
@@ -32,8 +32,9 @@ class NewsArticleListView(APIView):
         else:
             try:
                 # fetching default=50 Articles from db
-                limit = int(request.GET.get('limit', 5))  # Default limit is 50, adjust as needed
-                news_articles = NewsArticle.objects.all()[:limit]
+                limit = int(request.GET.get('limit', 50))  # Default limit is 50, adjust as needed
+                news_articles = NewsArticle.objects.filter(intensity="")  
+
                 if(news_articles):
                     serializer = self.OutputSerializer(news_articles, many=True)
                     # context = {'news_articles': serializer.data}
@@ -44,8 +45,6 @@ class NewsArticleListView(APIView):
                 
             except Exception as e:
                 return Response({'message': str(e)}, status=status.HTTP_400_BAD_REQUEST)
-
-
 
   
 

@@ -1,0 +1,25 @@
+.app {
+    display: flex;
+    flex-direction: column;
+    height: 80vh;
+  }
+
+    
+  .upper-half,
+  .lower-half {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex: 1;
+  }
+  
+  .elevated-frame {
+    background-color: #fff; /* Set your desired background color */
+    border: 1px solid #0c0a0a;
+    padding: 30px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4); /* Add an appropriate box shadow for elevation */
+  }
+
+
+  
+  /* Add more styling as needed */
